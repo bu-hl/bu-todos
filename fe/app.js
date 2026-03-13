@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000/api/todos";
+const API_BASE_URL = `http://${window.location.hostname}:3000/api/todos`;
 
 let todoForm;
 let todoInput;
@@ -93,7 +93,7 @@ function handleFetchError(error) {
     error.message.includes("Failed to fetch") ||
     error.message.includes("fetch")
   ) {
-    return "서버에 연결할 수 없습니다. 백엔드 서버(http://localhost:3000)가 실행 중인지 확인하세요.";
+    return `서버에 연결할 수 없습니다. 백엔드 서버(${API_BASE_URL})가 실행 중인지 확인하세요.`;
   }
   return error.message;
 }

@@ -10,10 +10,8 @@ const PORT = process.env.PORT || 3000;
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  if (
-    origin &&
-    (origin.includes("localhost:3001") || origin.includes("127.0.0.1:3001"))
-  ) {
+  // 같은 호스트의 3001 포트 허용 (localhost, AWS IP 등)
+  if (origin && origin.includes(":3001")) {
     res.header("Access-Control-Allow-Origin", origin);
   }
 
