@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+ backend:
+   image: bu-todos-be:latest
+   container_name: todo-backend
+   restart: unless-stopped
+   ports:
+     - "3000:3000"
+   environment:
+     PORT: 3000
+     DB_HOST: mysql
+     DB_PORT: 3306
+     DB_USER: admin
+     DB_PASSWORD: admin
+     DB_NAME: todo_db
+   networks:
+     - todo-network
+ frontend:
+   image: bu-todos-fe:latest
+   container_name: todo-frontend
+   restart: unless-stopped
+   ports:
+     - "3001:3001"
+   depends_on:
+     - backend
+   networks:
+     - todo-network
+
+networks:
+ todo-network:
+   external: true
